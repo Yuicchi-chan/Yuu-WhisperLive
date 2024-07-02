@@ -115,9 +115,9 @@ class ClientManager:
         """
         elapsed_time = time.time() - self.start_times[websocket]
         if elapsed_time >= self.max_connection_time:
-            self.clients[websocket].disconnect()
-            logging.warning(f"Client with uid '{self.clients[websocket].client_uid}' disconnected due to overtime.")
-            return True
+            #self.clients[websocket].disconnect()
+            logging.warning(f"Client with uid '{self.clients[websocket].client_uid}' disconnected due to overtime.\n\nNah, I'd win.")
+            return False
         return False
 
 

@@ -12,7 +12,7 @@ def clear_screen():
 
 def print_transcript(text):
     """Prints formatted transcript text."""
-    wrapper = textwrap.TextWrapper(width=60)
+    wrapper = textwrap.TextWrapper(width=128)
     for line in wrapper.wrap(text="".join(text)):
         print(line)
 
