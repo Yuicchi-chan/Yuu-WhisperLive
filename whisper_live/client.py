@@ -100,6 +100,9 @@ class Client:
         elif status == "WARNING":
             print(f"Message from Server: {message_data['message']}")
 
+    old_text = "Nothing"
+    repeition_checker = 0
+
     def process_segments(self, segments):
         """Processes transcript segments."""
         text = []
@@ -117,10 +120,21 @@ class Client:
             self.last_response_received = time.time()
             self.last_received_segment = segments[-1]["text"]
 
+        
         # Truncate to last 3 entries for brevity.
-        text = text[-5:]
-        #utils.clear_screen()
-        utils.print_transcript(text)
+        #text = text[-5:]
+
+        #If the last 3 entries are the same then move forward
+        if(len(text) < 2):
+            print(text)
+        #    return
+        #if(text[-1] == text[-2] ):#and text[-1] == text[-3]):
+        #Check if what's being said is the same as the old old text, if it isn't then print it
+        if(text[-1] != self.old_text):
+            utils.print_transcript("New Text: "+ text[-1])
+            self.old_text = text[-1]    
+        # So the idea is that in the event that we have the same segment being sent to us multiple times, we don't want to keep appending it to the transcript, so just ignore it
+        
 
     def on_message(self, ws, message):
         """

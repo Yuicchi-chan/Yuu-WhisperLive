@@ -6,7 +6,7 @@ client = TranscriptionClient(
   25565,
   #lang="en",
   translate=True,
-  model="small",
+  model="medium.en",
   use_vad=True
   )
 
